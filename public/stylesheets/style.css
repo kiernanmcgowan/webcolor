@@ -5,9 +5,15 @@ body {
 a {
   color: #00b7ff;
 }
+.navbar a.brand {
+  padding-left: 70px;
+}
 li {
   float: left;
   list-style: none;
+}
+ul.dropdown-menu p {
+  padding: 5px 20px;
 }
 #circleList div.container {
   float: left;
