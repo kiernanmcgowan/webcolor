@@ -1,0 +1,10 @@
+{
+  "name": "dropdownmenu-website-visualization",
+  "version": "1.33.7",
+  "private": true,
+  "dependencies": {
+    "express": "3.3.1",
+    "jade": "0.32.x",
+    "stylus": "0.32.1"
+  }
+}
