@@ -1,2 +1,4 @@
 *.sublime-*
 node_modules/*
+config.json
+sites.csv

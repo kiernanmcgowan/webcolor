@@ -1,0 +1,20 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+a {
+  color: #00b7ff;
+}
+li {
+  float: left;
+  list-style: none;
+}
+#circleList div.container {
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+.example {
+  float: right;
+  width: 120px;
+}
