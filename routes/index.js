@@ -11,7 +11,11 @@ client.connect(function(err) {
 });
 
 exports.index = function(req, res){
-  client.query('SELECT * FROM site LIMIT 250', function(err, rs) {
-    res.render('index', {title: 'Internet color', data: rs.rows});
+  client.query('SELECT * FROM site LIMIT 200', function(err, rs) {
+    if (err) {
+      res.render('index', {title: 'Internet color', data: []]});
+    } else {
+      res.render('index', {title: 'Internet color', data: rs.rows});
+    }
   });
 };
