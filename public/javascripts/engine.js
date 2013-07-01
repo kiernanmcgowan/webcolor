@@ -12,7 +12,7 @@ function render(data) {
 
     var logScale = d3.scale.log();
     logScale.domain([site.count[4], site.count[1]]);
-    logScale.range([50, 125]);
+    logScale.range([10, 125]);
 
     var background = [site.colors[0]];
     var vis = [site.count[1], site.count[2], site.count[3], site.count[4]];
@@ -54,9 +54,9 @@ function render(data) {
                      return site.colors[i + 1];
                    });
 
-    var contentString = "";
-    console.log(site.colors);
-    console.log(site.count);
+    var contentString = '';
+    contentString += '<p><strong>Pallet</strong></p>';
+
     for (var j = 0; j < site.colors.length; j++) {
       contentString += "<p class='span3'>" + site.colors[j] + "<span class='label example' style='background-color:" + site.colors[j] + "'>&nbsp;</span></p>";
     }
@@ -64,7 +64,7 @@ function render(data) {
     $('#site-' + i).popover({
       html: true,
       placement: 'bottom',
-      title: '<strong>' + site.hostname + '</strong>',
+      title: '<strong>' + site.display_name + '</strong>',
       content: contentString,
       trigger: 'hover'
     });
