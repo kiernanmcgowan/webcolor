@@ -98,5 +98,5 @@ def processFile(srcCSV, maxCount):
             getPalletForSite(row[1])
 
 
-processFile('../data/sites.csv', 500)
+processFile('../data/sites.csv', 10000)
 #getPalletForSite('facebook.com')

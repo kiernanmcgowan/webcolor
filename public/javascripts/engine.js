@@ -4,14 +4,22 @@ function render(data) {
   var ul = $('#circleList');
   for (var i = 0; i < data.length; i++) {
     // only sites with 4 colors
+    // they look nicer :)
     if (data[i].count && data[i].count.length < 5) {
       continue;
     }
 
+    // mess the numbers to that it displays with area (not radius) proportional to weight
     var site = data[i];
+    var weights = [
+      site.count[1] + site.count[2] + site.count[3] + site.count[4],
+      site.count[2] + site.count[3] + site.count[4],
+      site.count[3] + site.count[4],
+      site.count[4]
+    ];
 
     var logScale = d3.scale.log();
-    logScale.domain([site.count[4], site.count[1]]);
+    logScale.domain([weights[3], weights[0]]);
     logScale.range([10, 125]);
 
     var background = [site.colors[0]];
@@ -40,7 +48,7 @@ function render(data) {
                             .attr('fill', site.colors[0]);
 
     var circles = svgContainer.selectAll('circle')
-                       .data(vis)
+                       .data(weights)
                        .enter()
                        .append('circle');
 
