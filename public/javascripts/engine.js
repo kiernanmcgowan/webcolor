@@ -63,7 +63,7 @@ function render(data) {
                    });
 
     var contentString = '';
-    contentString += '<p><strong>Pallet</strong></p>';
+    contentString += '<p><strong>Palette</strong></p>';
 
     for (var j = 0; j < site.colors.length; j++) {
       contentString += "<p class='span3'>" + site.colors[j] + "<span class='label example' style='background-color:" + site.colors[j] + "'>&nbsp;</span></p>";
