@@ -1,7 +1,7 @@
-Color Pallet of the Internet
+Color Palette of the Internet
 ===
 
-A visualization of the color pallets used by popular sites on the internet.
+A visualization of the color palettes used by popular sites on the internet.
 
 Inspired by [Wired's June 2008 cover](http://hint.fm/projects/wired2008/)
 
