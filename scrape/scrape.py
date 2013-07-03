@@ -22,11 +22,14 @@ bucket = s3.lookup('dropdownmenu-color-img')
 import re
 regex = re.compile("#[0-9a-fA-F]+")
 
+
 # grabs a url and creates an image of it
 def createImageOfURL(url, imgLocation):
     try:
-        generateImage = 'gnome-web-photo -m photo --file ' + url + ' ' + imgLocation
+        print 'getting photo'
+        generateImage = 'gnome-web-photo -t 30 -m photo --file ' + url + ' ' + imgLocation
         status = commands.getstatusoutput(generateImage)
+        print 'done with photo'
         return True
     except Exception as err:
         print err
@@ -35,6 +38,7 @@ def createImageOfURL(url, imgLocation):
 
 # extracts the top 5 colors of an image
 def extractPallet(img):
+    print 'start pallet'
     getPallet = 'convert ' + img + ' +dither -colors 5 -format "%c" histogram:info:'
     status = commands.getstatusoutput(getPallet)
     colors = regex.findall(status[1])
@@ -45,7 +49,7 @@ def extractPallet(img):
 
     z = zip(count, colors)
     z.sort(reverse=True)
-
+    print 'end pallet'
     return zip(*z)
 
 
@@ -72,6 +76,9 @@ def getPalletForSite(hostname):
     display_name = arr[0]
 
     print display_name
+    if display_name == 'meb':
+        print 'skipping this site, causes issues'
+        return
     try:
         if createImageOfURL(url, imageLocation):
             pallet = extractPallet(imageLocation)
@@ -79,6 +86,7 @@ def getPalletForSite(hostname):
 
             key = bucket.new_key(display_name)
             key.set_contents_from_filename(imageLocation)
+            key.set_acl('public-read')
 
             # always delete the image
             cleanUp(imageLocation)
@@ -88,15 +96,17 @@ def getPalletForSite(hostname):
         print err
 
 
-def processFile(srcCSV, maxCount):
+def processFile(srcCSV, maxCount, start=0):
     with open(srcCSV, 'rb') as csvfile:
         sites = csv.reader(csvfile, delimiter=',', quotechar='|')
         for row in sites:
             if int(row[0]) > maxCount:
                 print 'hit top num - breaking'
                 break
-            getPalletForSite(row[1])
+            if int(row[0]) >= start:
+                print row
+                getPalletForSite(row[1])
 
 
-processFile('../data/sites.csv', 10000)
+processFile('../data/sites.csv', int(os.environ['end']), int(os.environ['start']))
 #getPalletForSite('facebook.com')
