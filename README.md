@@ -1,6 +1,8 @@
 Color Palette of the Internet
 ===
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/kiernanmcgowan/webcolor.svg)](https://greenkeeper.io/)
+
 A visualization of the color palettes used by popular sites on the internet.
 
 Inspired by [Wired's June 2008 cover](http://hint.fm/projects/wired2008/)
