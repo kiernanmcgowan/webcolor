@@ -3,9 +3,9 @@
   "version": "1.33.7",
   "private": true,
   "dependencies": {
-    "express": "3.3.1",
-    "jade": "0.32.x",
-    "stylus": "0.32.1",
-    "pg": "1.1.x"
+    "express": "4.15.2",
+    "jade": "~1.11.0",
+    "stylus": "0.54.5",
+    "pg": "~6.1.5"
   }
 }
